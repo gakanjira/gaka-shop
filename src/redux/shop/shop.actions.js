@@ -1,6 +1,6 @@
 import { ShopActionTypes } from './shop.types';
 
-import { firestore, convertCollectionsSnapschotToMap } from '../../firebase/firebase.utils';
+// import { firestore, convertCollectionsSnapschotToMap } from '../../firebase/firebase.utils';
 
 export const startFetchingCollections = () => ({
     type: ShopActionTypes.FETCH_COLLECTIONS_START
@@ -16,16 +16,16 @@ export const failUpdateCollections = errorMessage => ({
     payload: errorMessage
 })
 
-export const fetchCollectionsStartAsync = () => {
-    return dispatch => {
-        const collectionRef = firestore.collection("collections");
-        dispatch(startFetchingCollections())
+// export const fetchCollectionsStartAsync = () => {
+//     return dispatch => {
+//         const collectionRef = firestore.collection("collections");
+//         dispatch(startFetchingCollections())
 
-        collectionRef.get().then(snapschot => {
-            const collectionsMap = convertCollectionsSnapschotToMap(snapschot);
-            dispatch(updateCollections(collectionsMap))
-        }).catch(err => dispatch(failUpdateCollections(err.message)));
-    }
-}
+//         collectionRef.get().then(snapschot => {
+//             const collectionsMap = convertCollectionsSnapschotToMap(snapschot);
+//             dispatch(updateCollections(collectionsMap))
+//         }).catch(err => dispatch(failUpdateCollections(err.message)));
+//     }
+// }
 
 
